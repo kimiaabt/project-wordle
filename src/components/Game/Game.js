@@ -4,7 +4,7 @@ import { sample } from "../../utils";
 import { WORDS } from "../../data";
 import GuessInput from "../GuessInput/GuessInput";
 import GuessResults from "../GuessResults/GuessResults";
-import Banner from "../Banner/Banner";
+import Banner, { Status } from "../Banner/Banner";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -12,7 +12,7 @@ const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
-  const [gameStatus, setGameStatus] = React.useState(["running"]);
+  const [gameStatus, setGameStatus] = React.useState(Status.RUNNING);
   const [guesses, setGuesses] = React.useState([]);
 
   return (
@@ -25,14 +25,14 @@ function Game() {
         setGameStatus={setGameStatus}
         gameStatus={gameStatus}
       />
-      {gameStatus === "won" && (
+      {gameStatus === Status.WON && (
         <Banner status="happy">
           <strong>Congratulations! </strong>
           You got it in {guesses.length}{" "}
           {guesses.length === 1 ? "guess" : "guesses"}.
         </Banner>
       )}
-      {gameStatus === "lost" && (
+      {gameStatus === Status.LOST && (
         <Banner status="sad">
           Sorry, the correct answer was
           <strong> {answer}.</strong>
