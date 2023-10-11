@@ -11,7 +11,7 @@ const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
-  const [results, setResults] = React.useState([{ id: 0, result: "" }]);
+  const [results, setResults] = React.useState([]);
 
   return (
     <>

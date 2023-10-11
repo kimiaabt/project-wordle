@@ -6,9 +6,7 @@ function GuessInput({ results, setResults }) {
   const handleInput = (event) => {
     event.preventDefault();
     if (guess.length < 1) return;
-    const newResults = [...results];
-    newResults.push({ id: Math.random(), result: guess });
-    setResults(newResults);
+    setResults([...results, guess]);
     setGuess("");
   };
 
