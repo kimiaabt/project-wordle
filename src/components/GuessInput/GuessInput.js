@@ -1,5 +1,6 @@
 import React from "react";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
+import { Status } from "../Banner/Banner";
 
 function GuessInput({
   guesses,
@@ -35,7 +36,7 @@ function GuessInput({
     >
       <label htmlFor="guess-input">Enter guess:</label>
       <input
-        disabled={gameStatus === "won" || gameStatus === "lost"}
+        disabled={gameStatus === Status.WON || gameStatus === Status.LOST}
         required
         id="guess-input"
         type="text"
