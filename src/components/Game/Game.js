@@ -4,7 +4,7 @@ import { sample } from "../../utils";
 import { WORDS } from "../../data";
 import GuessInput from "../GuessInput/GuessInput";
 import GuessResults from "../GuessResults/GuessResults";
-import Banner, { Status } from "../Banner/Banner";
+import GameOverBanner, { Status } from "../Banner/Banner";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -26,17 +26,17 @@ function Game() {
         gameStatus={gameStatus}
       />
       {gameStatus === Status.WON && (
-        <Banner status="happy">
+        <GameOverBanner status="happy">
           <strong>Congratulations! </strong>
           You got it in {guesses.length}{" "}
           {guesses.length === 1 ? "guess" : "guesses"}.
-        </Banner>
+        </GameOverBanner>
       )}
       {gameStatus === Status.LOST && (
-        <Banner status="sad">
+        <GameOverBanner status="sad">
           Sorry, the correct answer was
           <strong> {answer}.</strong>
-        </Banner>
+        </GameOverBanner>
       )}
     </>
   );
