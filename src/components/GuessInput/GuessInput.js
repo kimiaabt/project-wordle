@@ -1,13 +1,13 @@
 import React from "react";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
-function GuessInput({ results, setResults }) {
+function GuessInput({ guesses, setGuesses }) {
   const [guess, setGuess] = React.useState("");
 
   const handleInput = (event) => {
     event.preventDefault();
-    if (guess.length < 1 || results.length === NUM_OF_GUESSES_ALLOWED) return;
-    setResults([...results, guess]);
+    if (guess.length < 1 || guesses.length === NUM_OF_GUESSES_ALLOWED) return;
+    setGuesses([...guesses, guess]);
     setGuess("");
   };
 

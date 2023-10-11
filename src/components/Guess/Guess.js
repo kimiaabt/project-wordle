@@ -3,17 +3,14 @@ import { range } from "../../utils";
 import { checkGuess } from "../../game-helpers";
 
 function Guess({ guess, answer }) {
-  const checkedGuess = guess ? checkGuess(guess, answer) : undefined;
+  const result = checkGuess(guess, answer);
 
   return (
     <>
       <p className="guess">
         {range(5).map((index) => (
-          <span
-            key={index}
-            className={`cell ${checkedGuess && checkedGuess[index].status}`}
-          >
-            {guess ? checkedGuess[index].letter : ""}
+          <span key={index} className={`cell ${guess && result[index].status}`}>
+            {guess ? result[index].letter : ""}
           </span>
         ))}
       </p>
