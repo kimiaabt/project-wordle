@@ -13,16 +13,17 @@ function GuessInput({
   const handleInput = (event) => {
     event.preventDefault();
     if (guess.length < 1) return;
-    checkGameStatus();
-    setGuesses([...guesses, guess]);
+    const nextGuesses = [...guesses, guess];
+    checkGameStatus(nextGuesses);
+    setGuesses(nextGuesses);
     setGuess("");
   };
 
-  const checkGameStatus = () => {
+  const checkGameStatus = (guesses) => {
     if (guess === answer) {
       setGameStatus("won");
     }
-    if (guesses.length === NUM_OF_GUESSES_ALLOWED - 1) {
+    if (guesses.length >= NUM_OF_GUESSES_ALLOWED) {
       setGameStatus("lost");
     }
   };
