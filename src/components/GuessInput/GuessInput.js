@@ -1,37 +1,18 @@
 import React from "react";
-import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 import { Status } from "../Banner/Banner";
 
-function GuessInput({
-  guesses,
-  setGuesses,
-  answer,
-  setGameStatus,
-  gameStatus,
-}) {
-  const [guess, setGuess] = React.useState("");
+function GuessInput({ handleSubmitGuess, gameStatus }) {
+  const [tempGuess, setTempGuess] = React.useState("");
 
-  const handleInput = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    if (guess.length < 1) return;
-    const nextGuesses = [...guesses, guess];
-    checkGameStatus(nextGuesses);
-    setGuesses(nextGuesses);
-    setGuess("");
-  };
-
-  const checkGameStatus = (guesses) => {
-    if (guess === answer) {
-      setGameStatus("won");
-    }
-    if (guesses.length >= NUM_OF_GUESSES_ALLOWED) {
-      setGameStatus("lost");
-    }
+    handleSubmitGuess(tempGuess);
+    setTempGuess("");
   };
 
   return (
     <form
-      onSubmit={(event) => handleInput(event)}
+      onSubmit={(event) => handleSubmit(event)}
       className="guess-input-wrapper"
     >
       <label htmlFor="guess-input">Enter guess:</label>
@@ -40,10 +21,10 @@ function GuessInput({
         required
         id="guess-input"
         type="text"
-        value={guess}
+        value={tempGuess}
         pattern="[a-zA-Z]{5}"
         title="5 letter word"
-        onChange={(event) => setGuess(event.target.value.toUpperCase())}
+        onChange={(event) => setTempGuess(event.target.value.toUpperCase())}
       />
     </form>
   );
