@@ -18,7 +18,21 @@ const getLetterStatus = (validatedGuesses) => {
   return statusObj;
 };
 
-function Keyboard({ validatedGuesses }) {
+const handleEnterClick = (event, tempGuess, handleSubmit) => {
+  if (tempGuess.length !== 5) return;
+
+  handleSubmit(event);
+};
+
+const handleOnClick = (letter, tempGuess, setTempGuess) => {
+  let nextTempGuess = "";
+  if (tempGuess) nextTempGuess = tempGuess;
+
+  nextTempGuess += letter;
+  setTempGuess(nextTempGuess);
+};
+
+function Keyboard({ validatedGuesses, tempGuess, setTempGuess, handleSubmit }) {
   let letterStatus = getLetterStatus(validatedGuesses);
 
   return (
@@ -26,13 +40,24 @@ function Keyboard({ validatedGuesses }) {
       {ROWS.map((row, index) => (
         <div className="keyboard-row" key={index}>
           {row.map((letter) => (
-            <div
+            <button
               key={letter}
               className={`keyboard-letter ${letterStatus[letter] || ""} `}
+              onClick={() => handleOnClick(letter, tempGuess, setTempGuess)}
             >
               {letter}
-            </div>
+            </button>
           ))}
+          {index === 2 && (
+            <button
+              onClick={(event) =>
+                handleEnterClick(event, tempGuess, handleSubmit)
+              }
+              className="keyboard-letter enter"
+            >
+              ENTER
+            </button>
+          )}
         </div>
       ))}
     </div>

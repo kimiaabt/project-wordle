@@ -119,6 +119,10 @@ h1 {
   border-radius: 7px;
 }
 
+.keyboard-letter.enter {
+  width: 130;
+}
+
 .keyboard-letter.correct {
   background: var(--color-success);
   border-color: var(--color-success);

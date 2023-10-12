@@ -34,8 +34,9 @@ function Game() {
         <GuessInput
           handleSubmitGuess={handleSubmitGuess}
           gameStatus={gameStatus}
+          validatedGuesses={validatedGuesses}
         />
-        <Keyboard validatedGuesses={validatedGuesses}></Keyboard>
+
         {gameStatus === Status.WON && (
           <Banner status="happy">
             <strong>Congratulations! </strong>
