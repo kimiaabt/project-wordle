@@ -247,11 +247,15 @@ h1 {
   outline-offset: 4px;
 }
 
-.share-button {
+.button {
   border: 0.2rem solid white;
   border-radius: 0.4rem;
   margin-left: 1.5rem;
   padding: 0.3rem;
+}
+
+.button.play-again {
+  background-color: dodgerblue;
 }
 
 .banner {

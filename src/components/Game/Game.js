@@ -54,6 +54,21 @@ function Game() {
       setGameStatus(Status.LOST);
   };
 
+  const resetGame = () => {
+    setGuesses([]);
+    setGameStatus(Status.RUNNING);
+    setShowSnackbar(false);
+    setAnswer(() => sample(WORDS));
+  };
+
+  function PlayAgainButton() {
+    return (
+      <button className="button play-again" onClick={resetGame}>
+        Play again
+      </button>
+    );
+  }
+
   return (
     <>
       <div className="game-wrapper">
@@ -75,16 +90,18 @@ function Game() {
                   getEmojiResults(validatedGuesses)
                 );
               }}
-              className="share-button"
+              className="button"
             >
               Share
             </button>
+            <PlayAgainButton></PlayAgainButton>
           </Banner>
         )}
         {gameStatus === Status.LOST && (
           <Banner status="sad">
             Sorry, the correct answer was
             <strong> {answer}.</strong>
+            <PlayAgainButton></PlayAgainButton>
           </Banner>
         )}
       </div>
